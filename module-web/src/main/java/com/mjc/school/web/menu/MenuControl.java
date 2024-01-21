@@ -1,6 +1,7 @@
 package com.mjc.school.web.menu;
 
 import com.mjc.school.service.DTO.DTO;
+
 import com.mjc.school.service.dataService.NewsOperations;
 import com.mjc.school.service.exeptions.Exceptions;
 import com.mjc.school.service.exeptions.InputChecker;
@@ -37,13 +38,7 @@ public class MenuControl {
 
     public void getAllNewsMenu() {
         out.println("Operation: " + Buttons.GET_ALL_NEWS.getButton());
-        try {
-            for (long id = 0; id < operation.getAllNews().size(); id++) {
-                out.println(operation.toString(operation.getNewsById(id)));
-            }
-        } catch (InputExceptions e) {
-            out.println(e.getErrorInfo());
-        }
+        out.println(operation.toString(operation.getAllNews()));
     }
 
     public void getNewsByIdMenu(Scanner input) {
@@ -52,8 +47,7 @@ public class MenuControl {
         String newsId = input.nextLine();
 
         try {
-            inputChecker.checkFormatNewsId(newsId);
-            inputChecker.checkNewsId(Long.parseLong(newsId));
+            inputChecker.checkNewsId(newsId);
             out.println(operation.toString(operation.getNewsById(Long.parseLong(newsId) - 1)));
         } catch (InputExceptions e) {
             out.println(e.getErrorInfo());
@@ -70,11 +64,10 @@ public class MenuControl {
         String authorId = input.nextLine();
 
         try {
-            inputChecker.checkFormatAuthorId(authorId);
+            inputChecker.checkAuthorId(authorId);
             DTO dto = new DTO(title, content, Long.parseLong(authorId));
             inputChecker.checkDTO(dto);
-            operation.createNews(dto);
-            out.println(operation.toString(dto));
+            out.println(operation.toString(operation.createNews(dto)));
         } catch (InputExceptions e) {
             out.println(e.getErrorInfo());
         }
@@ -92,13 +85,11 @@ public class MenuControl {
         String authorId = input.nextLine();
 
         try {
-            inputChecker.checkFormatNewsId(newsId);
-            inputChecker.checkNewsId(Long.parseLong(newsId));
-            inputChecker.checkFormatAuthorId(authorId);
+            inputChecker.checkNewsId(newsId);
+            inputChecker.checkAuthorId(authorId);
             DTO dto = new DTO(title, content, Long.parseLong(authorId));
             inputChecker.checkDTO(dto);
-            operation.updateNewsById(Long.parseLong(newsId) - 1, dto);
-            out.println(operation.toString(dto));
+            out.println(operation.toString(operation.updateNewsById(Long.parseLong(newsId) - 1, dto)));
         } catch (InputExceptions e) {
             out.println(e.getErrorInfo());
         }
@@ -109,10 +100,8 @@ public class MenuControl {
         out.println(ConstantsString.ENTER_NEWS_ID);
         String newsId = input.nextLine();
         try {
-            inputChecker.checkFormatNewsId(newsId);
-            inputChecker.checkNewsId(Long.parseLong(newsId));
-            new NewsOperations().removeNewsById(Long.parseLong(newsId) - 1);
-            out.println("true");
+            inputChecker.checkNewsId(newsId);
+            out.println(operation.removeNewsById(Long.parseLong(newsId) - 1));
         } catch (InputExceptions e) {
             out.println(e.getErrorInfo());
         }

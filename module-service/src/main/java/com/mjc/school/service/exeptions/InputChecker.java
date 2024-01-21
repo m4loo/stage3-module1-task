@@ -1,7 +1,6 @@
 package com.mjc.school.service.exeptions;
 
 import com.mjc.school.service.DTO.DTO;
-import org.apache.commons.lang3.*;
 import org.apache.commons.lang3.math.NumberUtils;
 
 public class InputChecker {
@@ -13,12 +12,19 @@ public class InputChecker {
 
     private InputChecker(){}
 
-    public void checkNewsId(long id) throws InputExceptions {
-        checkId(id, Exceptions.ERROR_NEWS_ID_LENGTH.getERROR_INFO(id));
+    public void checkNewsId(String id) throws InputExceptions {
+        checkFormatNewsId(id);
+        checkId(Long.parseLong(id), Exceptions.ERROR_NEWS_ID_LENGTH.getERROR_INFO(id));
     }
 
-    public void checkAuthorId(long id) throws InputExceptions {
-        checkId(id, Exceptions.ERROR_AUTHOR_ID_NOT_EXIST.getERROR_INFO(id));
+    public void checkAuthorId(String id) throws InputExceptions {
+        checkFormatAuthorId(id);
+        checkId(Long.parseLong(id), Exceptions.ERROR_AUTHOR_ID_LENGTH.getERROR_INFO(id));
+
+    }
+
+    public void checkId(long id, String message) throws InputExceptions {
+        if(id <= 0) throw new InputExceptions(message);
     }
 
     public void checkFormatNewsId(String id) throws InputExceptions {
@@ -29,14 +35,13 @@ public class InputChecker {
         formatCheck(id, Exceptions.ERROR_AUTHOR_ID_FORMAT.getERROR_INFO());
     }
 
-    public void checkId(long id, String message) throws InputExceptions {
-        if(id <= 0) throw new InputExceptions(message);
+    public void formatCheck(String string, String message) throws InputExceptions{
+        if (!NumberUtils.isParsable(string)) throw new InputExceptions(message);
     }
 
     public void checkDTO(DTO dto) throws InputExceptions {
         checkTitle(dto.getNewsTitle());
         checkContent(dto.getNewsContent());
-        checkAuthorId(dto.getAuthorId());
     }
 
     public void checkTitle(String title) throws InputExceptions {
@@ -49,9 +54,6 @@ public class InputChecker {
             throw new InputExceptions(Exceptions.ERROR_NEWS_CONTENT_LENGTH.getERROR_INFO(content));
     }
 
-    public void formatCheck(String string, String message) throws InputExceptions{
-        if (!NumberUtils.isParsable(string)) throw new InputExceptions(message);
-    }
     public static InputChecker getInputChecker() {
         return getNew.INPUT_CHECKER;
     }

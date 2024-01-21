@@ -12,6 +12,12 @@ public class News {
 
     News () {}
 
+    public News(String title, String content, long authorId) {
+        this.title = title;
+        this.content = content;
+        this.authorId = authorId;
+    }
+
     public News(long newsId, String title, String content, LocalDateTime createdDate, LocalDateTime lastUpdatedDate, long authorId){
         this.newsId = newsId;
         this.title = title;
@@ -83,6 +89,29 @@ public class News {
         public News build() {
             return news;
         }
+    }
+    public void setNewsId (long id) {
+        this.newsId = id;
+    }
+
+    public void setNewsTitle(String title) {
+        this.title = title;
+    }
+
+    public void setNewsContent (String content) {
+        this.content = content;
+    }
+
+    public void setCreatedDate (LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public void setLastUpdateDate (LocalDateTime createdDate) {
+        this.lastUpdatedDate = createdDate;
+    }
+
+    public void setAuthorId (long authorId) {
+        this.authorId = authorId;
     }
 
     public long getNewsId () {
