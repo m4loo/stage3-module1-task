@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class NewsMethods implements Interface<NewsModel> {
+public class NewsRepository implements Interface<NewsModel> {
     private final DataSource dataSource;
     {
         try {
