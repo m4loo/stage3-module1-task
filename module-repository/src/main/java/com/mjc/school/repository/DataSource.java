@@ -38,7 +38,7 @@ public class DataSource {
         return new RandomGetter().getAllAuthors();
     }
 
-    public static DataSource getNewsRandomBuilder() throws IOException {
+    public static DataSource getDataSource() throws IOException {
         if (dataSource == null) return new DataSource();
         return dataSource;
     }

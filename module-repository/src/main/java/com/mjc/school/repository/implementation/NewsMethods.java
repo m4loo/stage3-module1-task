@@ -1,17 +1,18 @@
 package com.mjc.school.repository.implementation;
 
 import com.mjc.school.repository.DataSource;
+import com.mjc.school.repository.Interface;
 import com.mjc.school.repository.NewsModel;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class NewsMethods {
+public class NewsMethods implements Interface<NewsModel> {
     private final DataSource dataSource;
     {
         try {
-            dataSource = DataSource.getNewsRandomBuilder();
+            dataSource = DataSource.getDataSource();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -38,8 +39,8 @@ public class NewsMethods {
         dataSource.getAllNews().set((int) newsModel.getNewsId(), newsModel);
         return newsModel;
     }
-    public Boolean deleteById(long id) {
-        dataSource.getAllNews().remove(dataSource.getAllNews().get((int) id));
+    public Boolean deleteById(Long id) {
+        dataSource.getAllNews().remove(dataSource.getAllNews().get(id.intValue()));
         return true;
     }
 
