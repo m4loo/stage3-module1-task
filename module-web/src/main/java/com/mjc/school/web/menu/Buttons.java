@@ -21,6 +21,6 @@ public enum Buttons {
     }
 
     public String getButton() {
-        return this.button;
+        return "" + this.button;
     }
 }

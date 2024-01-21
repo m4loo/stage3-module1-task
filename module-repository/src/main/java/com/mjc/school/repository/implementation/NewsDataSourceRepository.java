@@ -10,11 +10,12 @@ import java.util.List;
 
 public class NewsDataSourceRepository implements Interface<NewsModel> {
     private final DataSource dataSource;
-    {
+
+    public NewsDataSourceRepository() {
         try {
             dataSource = DataSource.getDataSource();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new DataSourceInitializationException("Error initializing data source.", e);
         }
     }
 
@@ -27,7 +28,7 @@ public class NewsDataSourceRepository implements Interface<NewsModel> {
     }
 
     public NewsModel create(NewsModel newsModel) {
-        newsModel.setNewsId(dataSource.getAllNews().size() + 1);
+        newsModel.setNewsId((long) dataSource.getAllNews().size() + 1);
         newsModel.setCreatedDate(LocalDateTime.now());
         newsModel.setLastUpdateDate(LocalDateTime.now());
         dataSource.getAllNews().add(newsModel);
@@ -50,5 +51,11 @@ public class NewsDataSourceRepository implements Interface<NewsModel> {
 
     public boolean authorIsExist(long id) {
         return id > dataSource.getAllAuthors().size();
+    }
+
+    private static class DataSourceInitializationException extends RuntimeException {
+        public DataSourceInitializationException(String message, Throwable cause) {
+            super(message, cause);
+        }
     }
 }

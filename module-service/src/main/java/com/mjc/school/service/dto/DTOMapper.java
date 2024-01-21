@@ -1,4 +1,4 @@
-package com.mjc.school.service.DTO;
+package com.mjc.school.service.dto;
 
 import com.mjc.school.repository.NewsModel;
 import org.modelmapper.ModelMapper;

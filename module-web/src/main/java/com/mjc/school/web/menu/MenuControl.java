@@ -1,8 +1,8 @@
 package com.mjc.school.web.menu;
 
-import com.mjc.school.service.DTO.DTO;
+import com.mjc.school.service.dto.DTO;
 
-import com.mjc.school.service.dataService.NewsOperations;
+import com.mjc.school.service.dataservice.NewsOperations;
 import com.mjc.school.service.exeptions.Exceptions;
 import com.mjc.school.service.exeptions.InputChecker;
 import com.mjc.school.service.exeptions.InputExceptions;
@@ -31,18 +31,18 @@ public class MenuControl {
                 case "4" -> updateNewsMenu(input);
                 case "5" -> removeNewsByIdMenu(input);
                 case "0" -> System.exit(0);
-                default -> out.println(Exceptions.ERROR_COMMAND_NOT_FOUND.getERROR_INFO());
+                default -> out.println(Exceptions.ERROR_COMMAND_NOT_FOUND.getErrorInfo());
             }
         }
     }
 
     public void getAllNewsMenu() {
-        out.println("Operation: " + Buttons.GET_ALL_NEWS.getButton());
+        out.println(ConstantsString.OPERATIONS + Buttons.GET_ALL_NEWS.getButton());
         out.println(operation.toString(operation.getAllNews()));
     }
 
     public void getNewsByIdMenu(Scanner input) {
-        out.println("Operation: " + Buttons.GET_NEWS_BY_ID.getButton());
+        out.println(ConstantsString.OPERATIONS + Buttons.GET_NEWS_BY_ID.getButton());
         out.println(ConstantsString.ENTER_NEWS_ID);
         String newsId = input.nextLine();
 
@@ -55,7 +55,7 @@ public class MenuControl {
     }
 
     public void createNewsMenu(Scanner input) {
-        out.println("Operation: " + Buttons.CREATE_NEWS.getButton());
+        out.println(ConstantsString.OPERATIONS + Buttons.CREATE_NEWS.getButton());
         out.println(ConstantsString.ENTER_NEWS_TITLE);
         String title = input.nextLine();
         out.println(ConstantsString.ENTER_NEWS_CONTENT);
@@ -74,7 +74,7 @@ public class MenuControl {
     }
 
     public void updateNewsMenu(Scanner input) {
-        out.println("Operation: " + Buttons.UPDATE_NEWS.getButton());
+        out.println(ConstantsString.OPERATIONS + Buttons.UPDATE_NEWS.getButton());
         out.println(ConstantsString.ENTER_NEWS_ID);
         String newsId = input.nextLine();
         out.println(ConstantsString.ENTER_NEWS_TITLE);
@@ -96,7 +96,7 @@ public class MenuControl {
     }
 
     public void removeNewsByIdMenu(Scanner input) {
-        out.println("Operation: " + Buttons.REMOVE_NEWS_BY_ID.getButton());
+        out.println(ConstantsString.OPERATIONS + Buttons.REMOVE_NEWS_BY_ID.getButton());
         out.println(ConstantsString.ENTER_NEWS_ID);
         String newsId = input.nextLine();
         try {

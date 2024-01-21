@@ -14,30 +14,32 @@ public enum Exceptions {
     ERROR_AUTHOR_ID_NOT_EXIST(Constants.ERROR_CODE_XXX22, Constants.ERROR_AUTHOR_ID_NOT_EXIST),
     ERROR_AUTHOR_ID_FORMAT(Constants.ERROR_CODE_XXX23, Constants.ERROR_AUTHOR_ID_FORMAT);
 
-    private final String ERROR_CODE;
-    private final String ERROR_MESSAGE;
+    private String errorCode;
+    private String errorMessage;
 
-    Exceptions(String ERROR_CODE, String ERROR_MESSAGE) {
-        this.ERROR_CODE = ERROR_CODE;
-        this.ERROR_MESSAGE = ERROR_MESSAGE;
+    Exceptions(String errorCode, String errorMessage) {
+        this.errorCode = errorCode;
+        this.errorMessage = errorMessage;
     }
 
-    public String getERROR_INFO() {
-        return Constants.ERROR_CODE + this.ERROR_CODE + " "
-                + Constants.ERROR_MESSAGE + this.ERROR_MESSAGE;
+    public String getErrorInfo() {
+        return Constants.ERROR_CODE + this.errorCode + " "
+                + Constants.ERROR_MESSAGE + this.errorMessage;
     }
 
-    public String getERROR_INFO(long id) {
-        return Constants.ERROR_CODE + this.ERROR_CODE + " "
-                + Constants.ERROR_MESSAGE + this.ERROR_MESSAGE.replace("{id}", Long.toString(id));
+    public String getErrorInfo(long id) {
+        return Constants.ERROR_CODE + this.errorCode + " "
+                + Constants.ERROR_MESSAGE + this.errorMessage.replace("{id}", Long.toString(id));
     }
 
-    public String getERROR_INFO(String srt) {
-        return Constants.ERROR_CODE + this.ERROR_CODE + " "
-                + Constants.ERROR_MESSAGE + this.ERROR_MESSAGE.replace("{srt}", srt);
+    public String getErrorInfo(String srt) {
+        return Constants.ERROR_CODE + this.errorCode + " "
+                + Constants.ERROR_MESSAGE + this.errorMessage.replace("{srt}", srt);
     }
 
-    public static class Constants {
+    private Exceptions() {}
+
+    private static class Constants {
         public static final String ERROR_CODE = "ERROR_CODE:";
         public static final String ERROR_MESSAGE = "ERROR_MESSAGE:";
 

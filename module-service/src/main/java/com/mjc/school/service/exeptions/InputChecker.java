@@ -1,6 +1,6 @@
 package com.mjc.school.service.exeptions;
 
-import com.mjc.school.service.DTO.DTO;
+import com.mjc.school.service.dto.DTO;
 import org.apache.commons.lang3.math.NumberUtils;
 
 public class InputChecker {
@@ -14,12 +14,12 @@ public class InputChecker {
 
     public void checkNewsId(String id) throws InputExceptions {
         checkFormatNewsId(id);
-        checkId(Long.parseLong(id), Exceptions.ERROR_NEWS_ID_LENGTH.getERROR_INFO(id));
+        checkId(Long.parseLong(id), Exceptions.ERROR_NEWS_ID_LENGTH.getErrorInfo(id));
     }
 
     public void checkAuthorId(String id) throws InputExceptions {
         checkFormatAuthorId(id);
-        checkId(Long.parseLong(id), Exceptions.ERROR_AUTHOR_ID_LENGTH.getERROR_INFO(id));
+        checkId(Long.parseLong(id), Exceptions.ERROR_AUTHOR_ID_LENGTH.getErrorInfo(id));
 
     }
 
@@ -28,11 +28,11 @@ public class InputChecker {
     }
 
     public void checkFormatNewsId(String id) throws InputExceptions {
-        formatCheck(id, Exceptions.ERROR_NEWS_ID_FORMAT.getERROR_INFO());
+        formatCheck(id, Exceptions.ERROR_NEWS_ID_FORMAT.getErrorInfo());
     }
 
     public void checkFormatAuthorId(String id) throws InputExceptions {
-        formatCheck(id, Exceptions.ERROR_AUTHOR_ID_FORMAT.getERROR_INFO());
+        formatCheck(id, Exceptions.ERROR_AUTHOR_ID_FORMAT.getErrorInfo());
     }
 
     public void formatCheck(String string, String message) throws InputExceptions{
@@ -46,20 +46,20 @@ public class InputChecker {
 
     public void checkTitle(String title) throws InputExceptions {
         if(title.length() < NEWS_TITLE_MIN || title.length() > NEWS_TITLE_MAX)
-            throw new InputExceptions(Exceptions.ERROR_NEWS_TITLE_LENGTH.getERROR_INFO(title));
+            throw new InputExceptions(Exceptions.ERROR_NEWS_TITLE_LENGTH.getErrorInfo(title));
     }
 
     public void checkContent(String content) throws InputExceptions {
         if(content.length() < NEWS_CONTENT_MIN || content.length() > NEWS_CONTENT_MAX)
-            throw new InputExceptions(Exceptions.ERROR_NEWS_CONTENT_LENGTH.getERROR_INFO(content));
+            throw new InputExceptions(Exceptions.ERROR_NEWS_CONTENT_LENGTH.getErrorInfo(content));
     }
 
     public static InputChecker getInputChecker() {
-        return getNew.INPUT_CHECKER;
+        return GetNew.INPUT_CHECKER;
     }
 
-    static class getNew {
+    static class GetNew {
         static final InputChecker INPUT_CHECKER = new InputChecker();
-        private getNew(){}
+        private GetNew(){}
     }
 }
