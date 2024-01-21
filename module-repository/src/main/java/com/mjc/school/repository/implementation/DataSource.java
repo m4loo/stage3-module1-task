@@ -1,25 +1,25 @@
 package com.mjc.school.repository.implementation;
 
 import com.mjc.school.repository.Author;
-import com.mjc.school.repository.News;
+import com.mjc.school.repository.NewsModel;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsRandomBuilder {
+public class DataSource {
     private static final int TOTAL_NUMBER_OF_NEWS = 20;
-    private static NewsRandomBuilder newsRandomBuilder;
-    private final List<News> allNews = new ArrayList<>();
+    private static DataSource dataSource;
+    private final List<NewsModel> allNews = new ArrayList<>();
 
-    private NewsRandomBuilder() throws IOException {
+    private DataSource() throws IOException {
         RandomGetter randomGetter = new RandomGetter();
         randomGetter.createAuthorId();
         for (long i = 0; i <= TOTAL_NUMBER_OF_NEWS - 1; i++) {
             LocalDateTime createdDate = randomGetter.getRandomCreatedDate();
             LocalDateTime lastUpdatedDate = randomGetter.getRandomLastUpdatedDate(createdDate);
-            News news = new News.NewsBuilder()
+            NewsModel newsModel = new NewsModel.NewsBuilder()
                     .setNewsId(i + 1)
                     .setNewsTitle(randomGetter.getRandomTitle())
                     .setNewsContent(randomGetter.getRandomContent())
@@ -27,11 +27,11 @@ public class NewsRandomBuilder {
                     .setLastUpdateDate(lastUpdatedDate)
                     .setAuthorId(randomGetter.getRandomAuthorId())
                     .build();
-            this.allNews.add(news);
+            this.allNews.add(newsModel);
         }
     }
 
-    public List<News> getAllNews() {
+    public List<NewsModel> getAllNews() {
         return this.allNews;
     }
 
@@ -39,8 +39,8 @@ public class NewsRandomBuilder {
         return new RandomGetter().getAllAuthors();
     }
 
-    public static NewsRandomBuilder getNewsRandomBuilder() throws IOException {
-        if (newsRandomBuilder == null) return new NewsRandomBuilder();
-        return newsRandomBuilder;
+    public static DataSource getNewsRandomBuilder() throws IOException {
+        if (dataSource == null) return new DataSource();
+        return dataSource;
     }
 }

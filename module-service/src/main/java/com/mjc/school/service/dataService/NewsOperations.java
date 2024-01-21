@@ -13,12 +13,12 @@ public class NewsOperations {
     private final DTOMapper DTOMapper = new DTOMapper();
 
     public List<DTO> getAllNews() {
-        return DTOMapper.convertToDTOList(newsMethods.getAllNews());
+        return DTOMapper.convertToDTOList(newsMethods.readAll());
     }
 
     public DTO getNewsById(long id) throws InputExceptions {
         if (newsMethods.newsIsExist(id)) throw new InputExceptions(Exceptions.ERROR_NEWS_NOT_EXIST.getERROR_INFO(id));
-        return DTOMapper.convertToDTO(newsMethods.getNewsById(id));
+        return DTOMapper.convertToDTO(newsMethods.readById(id));
     }
 
     public DTO createNews(DTO dto) throws InputExceptions {
@@ -34,7 +34,7 @@ public class NewsOperations {
 
     public boolean removeNewsById(long id) throws InputExceptions {
         if (newsMethods.newsIsExist(id)) throw new InputExceptions(Exceptions.ERROR_NEWS_NOT_EXIST.getERROR_INFO(id));
-        return newsMethods.removeNewsById(id);
+        return newsMethods.deleteById(id);
     }
 
     public String toString(DTO dto) {

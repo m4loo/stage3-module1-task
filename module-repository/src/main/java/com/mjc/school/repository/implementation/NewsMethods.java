@@ -1,52 +1,52 @@
 package com.mjc.school.repository.implementation;
 
-import com.mjc.school.repository.News;
+import com.mjc.school.repository.NewsModel;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class NewsMethods {
-    private final NewsRandomBuilder newsRandomBuilder;
+    private final DataSource dataSource;
     {
         try {
-            newsRandomBuilder = NewsRandomBuilder.getNewsRandomBuilder();
+            dataSource = DataSource.getNewsRandomBuilder();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public List<News> getAllNews() {
-        return newsRandomBuilder.getAllNews();
+    public List<NewsModel> readAll() {
+        return dataSource.getAllNews();
     }
 
-    public News getNewsById(long id) {
-        return newsRandomBuilder.getAllNews().get((int) id);
+    public NewsModel readById(long id) {
+        return dataSource.getAllNews().get((int) id);
     }
 
-    public News createNews(News news) {
-        news.setNewsId(newsRandomBuilder.getAllNews().size() + 1);
-        news.setCreatedDate(LocalDateTime.now());
-        news.setLastUpdateDate(LocalDateTime.now());
-        newsRandomBuilder.getAllNews().add(news);
-        return news;
+    public NewsModel createNews(NewsModel newsModel) {
+        newsModel.setNewsId(dataSource.getAllNews().size() + 1);
+        newsModel.setCreatedDate(LocalDateTime.now());
+        newsModel.setLastUpdateDate(LocalDateTime.now());
+        dataSource.getAllNews().add(newsModel);
+        return newsModel;
     }
 
-    public News updateNewsById(long id, News news) {
-        news.setLastUpdateDate(LocalDateTime.now());
-        newsRandomBuilder.getAllNews().set((int) id, news);
-        return news;
+    public NewsModel updateNewsById(long id, NewsModel newsModel) {
+        newsModel.setLastUpdateDate(LocalDateTime.now());
+        dataSource.getAllNews().set((int) id, newsModel);
+        return newsModel;
     }
-    public boolean removeNewsById(long id) {
-        newsRandomBuilder.getAllNews().remove(newsRandomBuilder.getAllNews().get((int) id));
+    public boolean deleteById(long id) {
+        dataSource.getAllNews().remove(dataSource.getAllNews().get((int) id));
         return true;
     }
 
     public boolean newsIsExist(long id) {
-        return id > newsRandomBuilder.getAllNews().size();
+        return id > dataSource.getAllNews().size();
     }
 
     public boolean authorIsExist(long id) {
-        return id > newsRandomBuilder.getAllAuthors().size();
+        return id > dataSource.getAllAuthors().size();
     }
 }

@@ -2,7 +2,7 @@ package com.mjc.school.repository;
 
 import java.time.LocalDateTime;
 
-public class News {
+public class NewsModel {
     private long newsId;
     private String title;
     private String content;
@@ -10,15 +10,15 @@ public class News {
     private LocalDateTime lastUpdatedDate;
     private long authorId;
 
-    News () {}
+    NewsModel() {}
 
-    public News(String title, String content, long authorId) {
+    public NewsModel(String title, String content, long authorId) {
         this.title = title;
         this.content = content;
         this.authorId = authorId;
     }
 
-    public News(long newsId, String title, String content, LocalDateTime createdDate, LocalDateTime lastUpdatedDate, long authorId){
+    public NewsModel(long newsId, String title, String content, LocalDateTime createdDate, LocalDateTime lastUpdatedDate, long authorId){
         this.newsId = newsId;
         this.title = title;
         this.content = content;
@@ -28,66 +28,66 @@ public class News {
     }
 
     public static class NewsBuilder {
-        private final News news;
+        private final NewsModel newsModel;
 
         public NewsBuilder() {
-            news = new News();
+            newsModel = new NewsModel();
         }
 
 
         public NewsBuilder setNewsId (long id) {
-            news.newsId = id;
+            newsModel.newsId = id;
             return this;
         }
 
         public NewsBuilder setNewsTitle(String title) {
-            news.title = title;
+            newsModel.title = title;
             return this;
         }
 
         public NewsBuilder setNewsContent (String content) {
-            news.content = content;
+            newsModel.content = content;
             return this;
         }
 
         public NewsBuilder setCreatedDate (LocalDateTime createdDate) {
-            news.createdDate = createdDate;
+            newsModel.createdDate = createdDate;
             return this;
         }
 
         public NewsBuilder setLastUpdateDate (LocalDateTime createdDate) {
-            news.lastUpdatedDate = createdDate;
+            newsModel.lastUpdatedDate = createdDate;
             return this;
         }
 
         public NewsBuilder setAuthorId (long authorId) {
-            news.authorId = authorId;
+            newsModel.authorId = authorId;
             return this;
         }
 
 
         public long getNewsId () {
-            return news.newsId;
+            return newsModel.newsId;
         }
 
         public String getNewsTitle() {
-            return news.title;
+            return newsModel.title;
         }
 
         public String getNewsContent() {
-            return news.content;
+            return newsModel.content;
         }
 
         public LocalDateTime getCreatedDate() {
-            return news.createdDate;
+            return newsModel.createdDate;
         }
 
         public LocalDateTime getLastUpdateDate() {
-            return news.lastUpdatedDate;
+            return newsModel.lastUpdatedDate;
         }
 
-        public News build() {
-            return news;
+        public NewsModel build() {
+            return newsModel;
         }
     }
     public void setNewsId (long id) {
