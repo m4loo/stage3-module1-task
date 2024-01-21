@@ -29,7 +29,7 @@ public class NewsOperations {
     public DTO updateNewsById(long id, DTO dto) throws InputExceptions {
         if (newsMethods.newsIsExist(id)) throw new InputExceptions(Exceptions.ERROR_NEWS_NOT_EXIST.getERROR_INFO(id));
         if (newsMethods.authorIsExist(dto.getAuthorId())) throw new InputExceptions(Exceptions.ERROR_AUTHOR_ID_NOT_EXIST.getERROR_INFO(dto.getAuthorId()));
-        return DTOMapper.convertToDTO(newsMethods.updateNewsById(id, DTOMapper.convertToNews(dto)));
+        return DTOMapper.convertToDTO(newsMethods.updateNewsById(DTOMapper.convertToNews(dto)));
     }
 
     public boolean removeNewsById(long id) throws InputExceptions {

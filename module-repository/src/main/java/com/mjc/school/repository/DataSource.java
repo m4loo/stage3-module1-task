@@ -1,7 +1,6 @@
-package com.mjc.school.repository.implementation;
+package com.mjc.school.repository;
 
-import com.mjc.school.repository.Author;
-import com.mjc.school.repository.NewsModel;
+import com.mjc.school.repository.implementation.RandomGetter;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

@@ -1,5 +1,6 @@
 package com.mjc.school.repository.implementation;
 
+import com.mjc.school.repository.DataSource;
 import com.mjc.school.repository.NewsModel;
 
 import java.io.IOException;
@@ -20,24 +21,24 @@ public class NewsMethods {
         return dataSource.getAllNews();
     }
 
-    public NewsModel readById(long id) {
-        return dataSource.getAllNews().get((int) id);
+    public NewsModel readById(Long id) {
+        return dataSource.getAllNews().get(id.intValue());
     }
 
-    public NewsModel createNews(NewsModel newsModel) {
-        newsModel.setNewsId(dataSource.getAllNews().size() + 1);
-        newsModel.setCreatedDate(LocalDateTime.now());
-        newsModel.setLastUpdateDate(LocalDateTime.now());
-        dataSource.getAllNews().add(newsModel);
-        return newsModel;
+    public NewsModel createNews(NewsModel model) {
+        model.setNewsId(dataSource.getAllNews().size() + 1);
+        model.setCreatedDate(LocalDateTime.now());
+        model.setLastUpdateDate(LocalDateTime.now());
+        dataSource.getAllNews().add(model);
+        return model;
     }
 
-    public NewsModel updateNewsById(long id, NewsModel newsModel) {
+    public NewsModel updateNewsById(NewsModel newsModel) {
         newsModel.setLastUpdateDate(LocalDateTime.now());
-        dataSource.getAllNews().set((int) id, newsModel);
+        dataSource.getAllNews().set((int) newsModel.getNewsId(), newsModel);
         return newsModel;
     }
-    public boolean deleteById(long id) {
+    public Boolean deleteById(long id) {
         dataSource.getAllNews().remove(dataSource.getAllNews().get((int) id));
         return true;
     }
