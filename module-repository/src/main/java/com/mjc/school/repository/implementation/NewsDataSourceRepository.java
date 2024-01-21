@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class NewsRepository implements Interface<NewsModel> {
+public class NewsDataSourceRepository implements Interface<NewsModel> {
     private final DataSource dataSource;
     {
         try {
@@ -26,12 +26,12 @@ public class NewsRepository implements Interface<NewsModel> {
         return dataSource.getAllNews().get(id.intValue());
     }
 
-    public NewsModel createNews(NewsModel model) {
-        model.setNewsId(dataSource.getAllNews().size() + 1);
-        model.setCreatedDate(LocalDateTime.now());
-        model.setLastUpdateDate(LocalDateTime.now());
-        dataSource.getAllNews().add(model);
-        return model;
+    public NewsModel create(NewsModel newsModel) {
+        newsModel.setNewsId(dataSource.getAllNews().size() + 1);
+        newsModel.setCreatedDate(LocalDateTime.now());
+        newsModel.setLastUpdateDate(LocalDateTime.now());
+        dataSource.getAllNews().add(newsModel);
+        return newsModel;
     }
 
     public NewsModel updateNewsById(NewsModel newsModel) {
