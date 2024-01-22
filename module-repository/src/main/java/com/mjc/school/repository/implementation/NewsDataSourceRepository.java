@@ -9,48 +9,48 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class NewsDataSourceRepository implements Interface<NewsModel> {
-    private final DataSource dataSource;
+    private final DataSource newsDataSource;
 
     public NewsDataSourceRepository() {
         try {
-            dataSource = DataSource.getDataSource();
+            newsDataSource = new DataSource();
         } catch (IOException e) {
             throw new DataSourceInitializationException("Error initializing data source.", e);
         }
     }
 
     public List<NewsModel> readAll() {
-        return dataSource.getAllNews();
+        return newsDataSource.getAllNews();
     }
 
     public NewsModel readById(Long id) {
-        return dataSource.getAllNews().get(id.intValue());
+        return newsDataSource.getAllNews().get(id.intValue());
     }
 
     public NewsModel createNews(NewsModel newsModel) {
-        newsModel.setNewsId((long) dataSource.getAllNews().size() + 1);
+        newsModel.setNewsId((long) newsDataSource.getAllNews().size() + 1);
         newsModel.setCreatedDate(LocalDateTime.now());
         newsModel.setLastUpdateDate(LocalDateTime.now());
-        dataSource.getAllNews().add(newsModel);
+        newsDataSource.getAllNews().add(newsModel);
         return newsModel;
     }
 
     public NewsModel updateNewsById(NewsModel newsModel) {
         newsModel.setLastUpdateDate(LocalDateTime.now());
-        dataSource.getAllNews().set((int) newsModel.getNewsId(), newsModel);
+        newsDataSource.getAllNews().set((int) newsModel.getNewsId(), newsModel);
         return newsModel;
     }
     public Boolean deleteById(Long id) {
-        dataSource.getAllNews().remove(dataSource.getAllNews().get(id.intValue()));
+        newsDataSource.getAllNews().remove(newsDataSource.getAllNews().get(id.intValue()));
         return true;
     }
 
     public boolean newsIsExist(long id) {
-        return id > dataSource.getAllNews().size();
+        return id > newsDataSource.getAllNews().size();
     }
 
     public boolean authorIsExist(long id) {
-        return id > dataSource.getAllAuthors().size();
+        return id > newsDataSource.getAllAuthors().size();
     }
 
     private static class DataSourceInitializationException extends RuntimeException {

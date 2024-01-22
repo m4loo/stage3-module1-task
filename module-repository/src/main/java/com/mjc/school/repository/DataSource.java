@@ -12,7 +12,7 @@ public class DataSource {
     private static DataSource dataSource;
     private final List<NewsModel> allNews = new ArrayList<>();
 
-    private DataSource() throws IOException {
+    public DataSource() throws IOException {
         RandomGetter randomGetter = new RandomGetter();
         randomGetter.createAuthorId();
         for (long i = 0; i <= TOTAL_NUMBER_OF_NEWS - 1; i++) {

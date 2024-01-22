@@ -77,8 +77,8 @@ public class RandomGetter {
     }
 
     public LocalDateTime getRandomLastUpdatedDate(LocalDateTime createdDate) {
-        LocalDateTime LastUpdatedDate = getRandomDateTime();
-        while (LastUpdatedDate.isBefore(createdDate)) LastUpdatedDate = getRandomDateTime();
-        return LastUpdatedDate;
+        LocalDateTime lastUpdatedDate = getRandomDateTime();
+        while (lastUpdatedDate.isBefore(createdDate)) lastUpdatedDate = getRandomDateTime();
+        return lastUpdatedDate;
     }
 }
