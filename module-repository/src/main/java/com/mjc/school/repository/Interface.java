@@ -7,7 +7,7 @@ public interface Interface<T> {
 
     T readById(Long id);
 
-    T create(T model);
+    T createNews(T model);
 
     T updateNewsById(T model);
 

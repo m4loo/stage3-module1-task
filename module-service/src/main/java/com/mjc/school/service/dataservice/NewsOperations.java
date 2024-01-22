@@ -23,7 +23,7 @@ public class NewsOperations {
 
     public DTO createNews(DTO dto) throws InputExceptions {
         if (newsDataSourceRepository.authorIsExist(dto.getAuthorId())) throw new InputExceptions(Exceptions.ERROR_AUTHOR_ID_NOT_EXIST.getErrorInfo(dto.getAuthorId()));
-        return dtoMapper.convertToDTO(newsDataSourceRepository.create(dtoMapper.convertToNews(dto)));
+        return dtoMapper.convertToDTO(newsDataSourceRepository.createNews(dtoMapper.convertToNews(dto)));
     }
 
     public DTO updateNewsById(long id, DTO dto) throws InputExceptions {

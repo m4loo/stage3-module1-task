@@ -27,7 +27,7 @@ public class NewsDataSourceRepository implements Interface<NewsModel> {
         return dataSource.getAllNews().get(id.intValue());
     }
 
-    public NewsModel create(NewsModel newsModel) {
+    public NewsModel createNews(NewsModel newsModel) {
         newsModel.setNewsId((long) dataSource.getAllNews().size() + 1);
         newsModel.setCreatedDate(LocalDateTime.now());
         newsModel.setLastUpdateDate(LocalDateTime.now());
