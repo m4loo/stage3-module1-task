@@ -1,13 +1,13 @@
-package com.mjc.school.repository;
+package com.mjc.school.repository.implementation.model;
 
-public class Author {
+public class AuthorModel {
 
     private long authorId;
     private String authorName;
 
-    public Author() {}
+    public AuthorModel() {}
 
-    public Author (long authorId, String authorName){
+    public AuthorModel(long authorId, String authorName){
         this.authorId = authorId;
         this.authorName = authorName;
     }

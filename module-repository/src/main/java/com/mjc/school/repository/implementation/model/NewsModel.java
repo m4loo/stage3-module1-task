@@ -1,4 +1,4 @@
-package com.mjc.school.repository;
+package com.mjc.school.repository.implementation.model;
 
 import java.time.LocalDateTime;
 

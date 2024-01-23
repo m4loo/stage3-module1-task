@@ -1,6 +1,6 @@
 package com.mjc.school.repository.implementation;
 
-import com.mjc.school.repository.Author;
+import com.mjc.school.repository.implementation.model.AuthorModel;
 import com.mjc.school.repository.PathConstants;
 
 import java.io.IOException;
@@ -13,12 +13,12 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomGetter {
-    private final List<Author> allAuthors = new ArrayList<>();
+    private final List<AuthorModel> allAuthorModels = new ArrayList<>();
     private final Random random = new Random();
     PathConstants pathConstants = new PathConstants();
 
-    public List<Author> getAllAuthors() {
-        return this.allAuthors;
+    public List<AuthorModel> getAllAuthors() {
+        return this.allAuthorModels;
     }
 
     public void createAuthorId() throws IOException {
@@ -29,13 +29,13 @@ public class RandomGetter {
         for (long i = 0; i < lines.size(); i++) {
             long authorId = i + 1;
             String authorName = lines.get((int) i);
-            allAuthors.add(new Author(authorId, authorName));
+            allAuthorModels.add(new AuthorModel(authorId, authorName));
         }
     }
 
     public long getRandomAuthorId() {
-        int randomIndex = random.nextInt(allAuthors.size());
-        return allAuthors.get(randomIndex).getAuthorId();
+        int randomIndex = random.nextInt(allAuthorModels.size());
+        return allAuthorModels.get(randomIndex).getAuthorId();
     }
 
     public String getRandomTitle() throws IOException {

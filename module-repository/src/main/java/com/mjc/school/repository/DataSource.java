@@ -1,6 +1,8 @@
 package com.mjc.school.repository;
 
 import com.mjc.school.repository.implementation.RandomGetter;
+import com.mjc.school.repository.implementation.model.AuthorModel;
+import com.mjc.school.repository.implementation.model.NewsModel;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -34,7 +36,7 @@ public class DataSource {
         return this.allNews;
     }
 
-    public List<Author> getAllAuthors() {
+    public List<AuthorModel> getAllAuthors() {
         return new RandomGetter().getAllAuthors();
     }
 

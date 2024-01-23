@@ -1,14 +1,13 @@
 package com.mjc.school.repository.implementation;
 
 import com.mjc.school.repository.DataSource;
-import com.mjc.school.repository.Interface;
-import com.mjc.school.repository.NewsModel;
+import com.mjc.school.repository.implementation.model.NewsModel;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class NewsDataSourceRepository implements Interface<NewsModel> {
+public class NewsDataSourceRepository {
     private final DataSource newsDataSource;
 
     public NewsDataSourceRepository() {
