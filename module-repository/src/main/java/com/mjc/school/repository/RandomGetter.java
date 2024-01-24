@@ -1,6 +1,6 @@
-package com.mjc.school.repository.implementation;
+package com.mjc.school.repository;
 
-import com.mjc.school.repository.implementation.model.AuthorModel;
+import com.mjc.school.repository.model.AuthorModel;
 import com.mjc.school.repository.PathConstants;
 
 import java.io.IOException;
