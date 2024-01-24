@@ -1,4 +1,4 @@
-package com.mjc.school.repository;
+package com.mjc.school.repository.constants;
 
 public class PathConstants {
     private static final String AUTHOR_FILE_REPOSITORY = "module-repository/src/main/resources/author.txt";

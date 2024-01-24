@@ -1,7 +1,7 @@
-package com.mjc.school.repository;
+package com.mjc.school.repository.util;
 
+import com.mjc.school.repository.constants.PathConstants;
 import com.mjc.school.repository.model.AuthorModel;
-import com.mjc.school.repository.PathConstants;
 
 import java.io.IOException;
 import java.nio.file.Files;
